@@ -9,8 +9,9 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class user extends RealmObject {
-    @PrimaryKey
+   // @PrimaryKey
     private String name;
+
     private int age;
 
     public String getName() {

@@ -1,15 +1,19 @@
 package kr.co.heepie.helpingmemorizingapp.ui;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.UUID;
+
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.R;
 import kr.co.heepie.helpingmemorizingapp.db.user;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Realm mRealm;
 
@@ -18,22 +22,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try{
+            mRealm = Realm.getDefaultInstance();
+
+        }catch (Exception e){
+
+            // Get a Realm instance for this thread
+            RealmConfiguration config = new RealmConfiguration.Builder()
+                    .deleteRealmIfMigrationNeeded()
+                    .build();
+            mRealm = Realm.getInstance(config);
+
+        }
         init();
     }
 
-
     private void init(){
 
-        mRealm = Realm.getDefaultInstance();
-
         RealmResults<user> userList = getUserList();
-        Log.i("log1", ">>>>>   userList.size :  " + userList.size()); // :0
+        Log.i("Heepie", "# userList.size :  " + userList.size()); // :0
 
-        //유저 정보 데이터 DB 저장
         insertuserData();
 
-        Log.i("log1", ">>>>>   userList.size :  " + userList.size()); // :1
+        Log.i("Heepie", "# userList.size :  " + userList.size()); // :1
+        user usr = userList.first();
 
+        Log.i("Heepie", "# userName: " + usr.getName() + " userAge: " + usr.getAge());
+
+        deleteuserData();
     }
 
 
@@ -45,9 +61,17 @@ public class MainActivity extends AppCompatActivity {
     private void insertuserData(){
 
         mRealm.beginTransaction();
-        user user = mRealm.createObject(user.class);
-        user.setName("Heepie");
-        user.setAge(28);
+        user usr = mRealm.createObject(user.class);
+        usr.setName("Heepie");
+        usr.setAge(28);
+        mRealm.commitTransaction();
+    }
+
+    private void deleteuserData(){
+
+        mRealm.beginTransaction();
+        RealmResults<user> userList = mRealm.where(user.class).findAll();
+        userList.deleteAllFromRealm();
         mRealm.commitTransaction();
     }
 }
