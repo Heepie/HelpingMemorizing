@@ -12,6 +12,8 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.R;
 import kr.co.heepie.helpingmemorizingapp.db.user;
+import kr.co.heepie.helpingmemorizingapp.frame.Component;
+import kr.co.heepie.helpingmemorizingapp.frame.Folder;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -39,6 +41,10 @@ public class MainActivity extends Activity {
 
     private void init(){
 
+        RealmResults<Component> List = getComponentList();
+
+
+
         RealmResults<user> userList = getUserList();
         Log.i("Heepie", "# userList.size :  " + userList.size()); // :0
 
@@ -52,9 +58,20 @@ public class MainActivity extends Activity {
         deleteuserData();
     }
 
+    private RealmResults<Component> getComponentList() {
+        return mRealm.where(Component.class).findAll();
+    }
+
 
     private RealmResults<user> getUserList(){
         return mRealm.where(user.class).findAll();
+    }
+
+    private void insertComponentData() {
+        mRealm.beginTransaction();
+        Component component = mRealm.createObject(Folder.class);
+        
+
     }
 
 
