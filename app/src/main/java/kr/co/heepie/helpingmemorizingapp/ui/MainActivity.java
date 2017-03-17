@@ -15,6 +15,8 @@ import kr.co.heepie.helpingmemorizingapp.db.user;
 import kr.co.heepie.helpingmemorizingapp.frame.Component;
 import kr.co.heepie.helpingmemorizingapp.frame.Folder;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Realm mRealm;
@@ -41,8 +43,15 @@ public class MainActivity extends Activity {
 
     private void init(){
 
-        RealmResults<Component> List = getComponentList();
+        RealmResults List = getList(new Folder());
+        Log.i("Heepie", "# userList.size :  " + List.size()); // :0
 
+        insertFolderData();
+
+        Log.i("Heepie", "# userList.size :  " + List.size()); // :1
+         usr = List.first();
+
+        Log.i("Heepie", "# userName: " + usr.getName() + " userAge: " + usr.getAge());
 
 
         RealmResults<user> userList = getUserList();
@@ -58,8 +67,10 @@ public class MainActivity extends Activity {
         deleteuserData();
     }
 
-    private RealmResults<Component> getComponentList() {
-        return mRealm.where(Component.class).findAll();
+    private <T extends Component> RealmResults getList(T parm) {
+        return mRealm.where(T.class).findAll();
+
+
     }
 
 
@@ -67,11 +78,21 @@ public class MainActivity extends Activity {
         return mRealm.where(user.class).findAll();
     }
 
-    private void insertComponentData() {
+    private void insertFolderData() {
         mRealm.beginTransaction();
-        Component component = mRealm.createObject(Folder.class);
-        
+        Folder folder = mRealm.createObject(Folder.class);
+        folder.setName("Test_01");
+        folder.setDate("2017-03-16");
+        folder.setDescription("This is the folder for a test.");
+        folder.setColor("Green");
+        mRealm.commitTransaction();
+    }
 
+    private void deleteData() {
+        mRealm.beginTransaction();
+        RealmResults<Component> List = mRealm.where(Component.class).findAll();
+        List.deleteAllFromRealm();
+        mRealm.commitTransaction();
     }
 
 

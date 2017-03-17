@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Folder extends Component {
     private ArrayList<Component> list = new ArrayList<>();
     private String description;
-    private int color;
+    private String color;
 
     public Folder(String name) {
         super(name);
@@ -23,11 +23,11 @@ public class Folder extends Component {
         this.description = description;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
