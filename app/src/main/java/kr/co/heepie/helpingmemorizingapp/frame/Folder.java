@@ -1,13 +1,15 @@
 package kr.co.heepie.helpingmemorizingapp.frame;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
 public class Folder extends Component {
-    private ArrayList<Component> list = new ArrayList<>();
+    private Set<Card> list = new HashSet<Card>();
     private String description;
     private String color;
 
@@ -31,12 +33,16 @@ public class Folder extends Component {
         this.color = color;
     }
 
-    public void add(Component c) {
+    public Set getSet() {
+        return list;
+    }
+
+    public void add(Card c) {
         list.add(c);
     }
 
-    public void remove(Component c) {
-        int idx = list.indexOf(c);
-        list.remove(idx);
+    public void remove(Card c) {
+        list.remove(c);
     }
+
 }

@@ -27,4 +27,13 @@ public class Card extends Component {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Card c = (Card)obj;
+        if (c.getConcept() == concept)
+            return true;
+        else
+            return false;
+    }
 }

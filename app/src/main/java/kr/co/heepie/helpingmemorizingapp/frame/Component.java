@@ -6,7 +6,7 @@ import io.realm.RealmObject;
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public abstract class Component extends RealmObject {
+public abstract class Component {
     private String name;
     private String date;
 
