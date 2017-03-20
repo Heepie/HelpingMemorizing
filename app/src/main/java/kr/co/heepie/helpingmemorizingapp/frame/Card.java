@@ -1,15 +1,31 @@
 package kr.co.heepie.helpingmemorizingapp.frame;
 
+import io.realm.RealmModel;
+import io.realm.RealmObject;
+
 /**
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public class Card extends Component {
+public class Card extends RealmObject {
+    private String name;
     private String concept;
     private String description;
 
+    public Card() {
+
+    }
+
     public Card(String name) {
-        super(name);
+        this.name = name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getConcept() {

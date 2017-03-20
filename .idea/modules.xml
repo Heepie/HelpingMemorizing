@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HelpingMemorizing.iml" filepath="$PROJECT_DIR$/HelpingMemorizing.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HelpingMemorizingApp.iml" filepath="$PROJECT_DIR$/HelpingMemorizingApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelpingMemory.iml" filepath="$PROJECT_DIR$/HelpingMemory.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

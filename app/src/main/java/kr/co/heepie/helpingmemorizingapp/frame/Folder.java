@@ -4,17 +4,33 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public class Folder extends Component {
-    private Set<Card> list = new HashSet<Card>();
+public class Folder extends RealmObject {
+    private String name;
+    private RealmList<Card> list = new RealmList<Card>();
     private String description;
     private String color;
 
+    public Folder() {
+
+    }
+
     public Folder(String name) {
-        super(name);
+        this.name = name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
@@ -33,7 +49,7 @@ public class Folder extends Component {
         this.color = color;
     }
 
-    public Set getSet() {
+    public RealmList getSet() {
         return list;
     }
 
