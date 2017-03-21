@@ -22,6 +22,7 @@
         >
 
         <Button
+            android:id="@+id/main_checkBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,6 +32,7 @@
             />
 
         <Button
+            android:id="@+id/main_testBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -50,23 +52,23 @@
         >
 
         <Button
+            android:id="@+id/main_crtFolderBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Create Folder"
             android:textSize="30dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/round_background"
             />
 
         <Button
+            android:id="@+id/main_crtCardBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Create Card"
             android:textSize="30dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/round_background"
             />
 
     </LinearLayout>

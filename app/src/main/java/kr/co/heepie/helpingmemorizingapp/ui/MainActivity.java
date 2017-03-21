@@ -1,23 +1,17 @@
 package kr.co.heepie.helpingmemorizingapp.ui;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
-import java.util.Iterator;
-import java.util.Set;
-import java.util.UUID;
+import android.view.View;
+import android.widget.Button;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.R;
-import kr.co.heepie.helpingmemorizingapp.db.user;
-import kr.co.heepie.helpingmemorizingapp.frame.Card;
-import kr.co.heepie.helpingmemorizingapp.frame.Folder;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import kr.co.heepie.helpingmemorizingapp.db.Card;
+import kr.co.heepie.helpingmemorizingapp.db.Folder;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -28,6 +22,55 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button checkBtn = (Button)findViewById(R.id.main_checkBtn);
+        Button testBtn = (Button)findViewById(R.id.main_testBtn);
+        Button crtFolderBtn = (Button)findViewById(R.id.main_crtFolderBtn);
+        Button crtCardBtn = (Button)findViewById(R.id.main_crtCardBtn);
+
+        checkBtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Heepie", "CheckBtn Clicked");
+
+            }
+        });
+
+        testBtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Heepie", "TestBtn Clicked");
+            }
+        });
+
+        crtFolderBtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Heepie", "crtFolderBtnBtn Clicked");
+            }
+        });
+
+        crtCardBtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Heepie","crtCardBtnBtn Clicked");
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+         * To check DB
+         */
+        /*
         try{
             mRealm = Realm.getDefaultInstance();
 
@@ -40,7 +83,7 @@ public class MainActivity extends Activity {
             mRealm = Realm.getInstance(config);
 
         }
-/*
+
         Folder f = new Folder("Root");
         f.setDescription("This is the Root Folder");
         f.add(new Card("Design Pattern"));
@@ -54,7 +97,7 @@ public class MainActivity extends Activity {
             Log.i("Heepie", "Folder: " + f.getName() + "Card: " + c.getName());
 
         }
-*/
+
         RealmResults<Folder> folderList = getFolderList();
         RealmResults<Card> cardList = getCardList();
 
@@ -66,7 +109,7 @@ public class MainActivity extends Activity {
         Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
 
         Log.i("Heepie", "Folder Name: " + folderList.where().findFirst().getName() + "  CardList Size: " + folderList.where().findFirst().getDescription());
-
+*/
     }
 
     private RealmResults<Folder> getFolderList() {

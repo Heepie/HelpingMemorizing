@@ -1,8 +1,4 @@
-package kr.co.heepie.helpingmemorizingapp.frame;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+package kr.co.heepie.helpingmemorizingapp.db;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -17,9 +13,7 @@ public class Folder extends RealmObject {
     private String description;
     private String color;
 
-    public Folder() {
-
-    }
+    public Folder() { }
 
     public Folder(String name) {
         this.name = name;
@@ -33,20 +27,18 @@ public class Folder extends RealmObject {
         return name;
     }
 
+    public void setDescription(String description) { this.description = description; }
+
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getColor() {
         return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public RealmList getSet() {

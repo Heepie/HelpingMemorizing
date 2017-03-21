@@ -1,6 +1,5 @@
-package kr.co.heepie.helpingmemorizingapp.frame;
+package kr.co.heepie.helpingmemorizingapp.db;
 
-import io.realm.RealmModel;
 import io.realm.RealmObject;
 
 /**
@@ -12,9 +11,7 @@ public class Card extends RealmObject {
     private String concept;
     private String description;
 
-    public Card() {
-
-    }
+    public Card() { }
 
     public Card(String name) {
         this.name = name;
@@ -28,20 +25,18 @@ public class Card extends RealmObject {
         return name;
     }
 
-    public String getConcept() {
-        return concept;
-    }
-
     public void setConcept(String concept) {
         this.concept = concept;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getConcept() { return concept; }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
