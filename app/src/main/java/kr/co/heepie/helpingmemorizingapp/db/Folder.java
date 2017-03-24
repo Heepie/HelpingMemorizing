@@ -2,13 +2,18 @@ package kr.co.heepie.helpingmemorizingapp.db;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 /**
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
 public class Folder extends RealmObject {
+    @PrimaryKey
+    @Required
     private String name;
+
     private RealmList<Card> list = new RealmList<Card>();
     private String description;
     private String color;
@@ -41,7 +46,7 @@ public class Folder extends RealmObject {
         return color;
     }
 
-    public RealmList getSet() {
+    public RealmList<Card> getSet() {
         return list;
     }
 
