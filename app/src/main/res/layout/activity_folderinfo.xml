@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Input Folder Input"
+        android:text="Input Folder Info"
         android:textSize="30dp"
         android:gravity="center"
         />
@@ -35,6 +35,7 @@
             />
 
         <EditText
+            android:id="@+id/input_folderName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input name"
@@ -56,6 +57,7 @@
             />
 
         <EditText
+            android:id="@+id/input_folderDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input description"
@@ -77,6 +79,7 @@
             />
 
         <EditText
+            android:id="@+id/input_folderColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input Color"
@@ -84,4 +87,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/input_folderInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Create"
+        />
 </LinearLayout>
