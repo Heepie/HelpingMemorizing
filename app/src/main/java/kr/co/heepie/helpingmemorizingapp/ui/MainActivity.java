@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Realm mRealm;
 
-    DBManager dbManager = new DBManager();
+    DBManager dbManager = new DBManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +120,13 @@ public class MainActivity extends Activity {
 
     private void insertFolderData(String name, String description){
         mRealm.beginTransaction();
-        Folder f = mRealm.createObject(Folder.class, (String)name);
-        f.setName(name);
+        Folder f = new Folder(name);
         f.setDescription(description);
+        mRealm.insertOrUpdate(f);
+
+//        Folder f = mRealm.createObject(Folder.class, (String)name);
+//        f.setName(name);
+//        f.setDescription(description);
         mRealm.commitTransaction();
     }
 

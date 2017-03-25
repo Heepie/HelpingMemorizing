@@ -15,6 +15,6 @@ public class InputCardInfo extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.id.activity_cardinfo);
+        setContentView(R.layout.activity_cardinfo);
     }
 }

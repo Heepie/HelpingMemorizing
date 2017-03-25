@@ -1,9 +1,14 @@
 package kr.co.heepie.helpingmemorizingapp.ui;
 
+import android.content.Context;
+import android.content.Intent;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.db.Card;
 import kr.co.heepie.helpingmemorizingapp.db.Folder;
+import kr.co.heepie.helpingmemorizingapp.form.InputCardInfo;
+import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
 
 /**
  * Created by Hee_Ju.M on 2017-03-21.
@@ -13,16 +18,49 @@ import kr.co.heepie.helpingmemorizingapp.db.Folder;
 
 public class DBManager {
     private Realm mRealm;
+    private Intent intent;
+    private Context contenxt;
 
 
-    public void showFolderInfoActivity() {}
+    public DBManager(Context context) {
+        this.contenxt = context;
+    }
 
-    public void showCardInfoActivity() {}
+    public void showFolderInfoActivity() {
+        intent = new Intent(contenxt, InputFolderInfo.class);
+        contenxt.startActivity(intent);
+    }
+
+    public void showCardInfoActivity() {
+        intent = new Intent(contenxt, InputCardInfo.class);
+        contenxt.startActivity(intent);
+    }
 
     public void searchData() {}
 
     public void testActivity() {}
 
+    private void insertFolderData(String name, String description, String color){
+        mRealm.beginTransaction();
+
+        Folder f = new Folder(name);
+        f.setDescription(description);
+        f.setColor(color);
+        mRealm.insertOrUpdate(f);
+
+        mRealm.commitTransaction();
+    }
+
+    private void insertCardData(String name, String concept, String description){
+        mRealm.beginTransaction();
+
+        Card c = new Card(name);
+        c.setConcept(concept);
+        c.setDescription(description);
+        mRealm.insertOrUpdate(c);
+
+        mRealm.commitTransaction();
+    }
 
 
 
