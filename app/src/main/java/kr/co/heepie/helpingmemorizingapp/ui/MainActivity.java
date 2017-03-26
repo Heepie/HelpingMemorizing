@@ -21,13 +21,16 @@ import kr.co.heepie.helpingmemorizingapp.db.Folder;
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Realm mRealm;
+    private DBManager dbManager = DBManager.getInstance();
 
-    DBManager dbManager = new DBManager(this, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbManager.setContext(this);
+
 
         try {
             mRealm = Realm.getDefaultInstance();

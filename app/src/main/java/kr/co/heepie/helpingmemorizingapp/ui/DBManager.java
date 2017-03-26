@@ -22,20 +22,29 @@ import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
 public class DBManager extends Activity {
     static final int REQUEST_FOLDERDATA = 1;
     static final int REQUEST_CARDDATA = 2;
+
+    private static DBManager instance;
+
     private Realm mRealm;
     private Intent intent;
     private Context context;
     private Activity activity;
 
-    DBManager(Context context, Activity activity) {
+    public static synchronized DBManager getInstance() {
+        if (instance == null) {
+            instance = new DBManager();
+        }
+        return instance;
+    }
+
+    public void setContext(Context context) {
         this.context = context;
-        this.activity = activity;
     }
 
     public void showFolderInfoActivity() {
         intent = new Intent(context, InputFolderInfo.class);
-//        context.startActivity(intent);
-        activity.startActivityForResult(intent, REQUEST_FOLDERDATA);
+        context.startActivity(intent);
+//        activity.startActivityForResult(intent, REQUEST_FOLDERDATA);
 
 //        startActivityForResult(intent, REQUEST_FOLDERDATA);
     }
@@ -50,7 +59,7 @@ public class DBManager extends Activity {
 
     public void testActivity() {}
 
-    private void insertFolderData(String name, String description, String color){
+    public void insertFolderData(String name, String description, String color){
         mRealm.beginTransaction();
 
         Folder f = new Folder(name);
@@ -61,7 +70,7 @@ public class DBManager extends Activity {
         mRealm.commitTransaction();
     }
 
-    private void insertCardData(String name, String concept, String description){
+    public void insertCardData(String name, String concept, String description){
         mRealm.beginTransaction();
 
         Card c = new Card(name);

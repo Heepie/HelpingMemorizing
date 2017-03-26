@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import kr.co.heepie.helpingmemorizingapp.R;
 import kr.co.heepie.helpingmemorizingapp.ui.DBManager;
+import kr.co.heepie.helpingmemorizingapp.ui.MainActivity;
 
 /**
  * Created by Hee_Ju.M on 2017-03-21.
  */
 
 public class InputFolderInfo extends Activity{
+    private DBManager dbManager = DBManager.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +38,12 @@ public class InputFolderInfo extends Activity{
             public void onClick(View v) {
                 Log.i("Heepie", "name: " + name.getText() + "description: " + description.getText() + "color: " + color.getText());
                 if (name.getText() != "" && description.getText() != "" && color.getText() != "") {
-                    DBManager.insertFolderInfo();
-p
+                    dbManager.insertFolderData(name.getText().toString(), description.getText().toString(), color.getText().toString());
 
 //                    intent.putExtra("name", (String)name.getText())
 //                            .putExtra("description", (String)description.getText())
 //                            .putExtra("color", (String)color.getText());
-                    setResult(RESULT_OK, intent);
+//                    setResult(RESULT_OK, intent);
                 } else
                     setResult(RESULT_CANCELED, intent);
                 finish();
