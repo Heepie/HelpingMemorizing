@@ -1,6 +1,7 @@
 package kr.co.heepie.helpingmemorizingapp.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,17 +22,39 @@ public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Realm mRealm;
 
-    DBManager dbManager = new DBManager(this);
+    DBManager dbManager = new DBManager(this, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            mRealm = Realm.getDefaultInstance();
+
+        } catch (Exception e) {
+
+            // Get a Realm instance for this thread
+            RealmConfiguration config = new RealmConfiguration.Builder()
+                    .deleteRealmIfMigrationNeeded()
+                    .build();
+            mRealm = Realm.getInstance(config);
+
+        }
+
+        final RealmResults<Folder> folderList = getFolderList();
+        final RealmResults<Card> cardList = getCardList();
+
         Button checkBtn = (Button) findViewById(R.id.main_checkBtn);
         Button testBtn = (Button) findViewById(R.id.main_testBtn);
         Button crtFolderBtn = (Button) findViewById(R.id.main_crtFolderBtn);
         Button crtCardBtn = (Button) findViewById(R.id.main_crtCardBtn);
+
+
+
+
+
+
 
         checkBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -54,6 +77,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Log.i("Heepie", "crtFolderBtnBtn Clicked");
                 dbManager.showFolderInfoActivity();
+                Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
             }
         });
 
@@ -66,18 +90,9 @@ public class MainActivity extends Activity {
         });
 
 
-        try {
-            mRealm = Realm.getDefaultInstance();
 
-        } catch (Exception e) {
 
-            // Get a Realm instance for this thread
-            RealmConfiguration config = new RealmConfiguration.Builder()
-                    .deleteRealmIfMigrationNeeded()
-                    .build();
-            mRealm = Realm.getInstance(config);
 
-        }
 /*
         Folder f = new Folder("Root");
         f.setDescription("This is the Root Folder");
@@ -93,17 +108,19 @@ public class MainActivity extends Activity {
         }
 */
 
-        RealmResults<Folder> folderList = getFolderList();
-        RealmResults<Card> cardList = getCardList();
+//        RealmResults<Folder> folderList = getFolderList();
+//        RealmResults<Card> cardList = getCardList();
 
         Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
 
+/*
         insertFolderData("Root", "This is Root Folder");
         insertCardData("Design Pattern", "Singleton Pattern", "This is the pattern to make only one instance");
 
         Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
 
         Log.i("Heepie", "Folder Name: " + folderList.where().findFirst().getName() + "  CardList Size: " + folderList.where().findFirst().getDescription());
+*/
 
 
     }

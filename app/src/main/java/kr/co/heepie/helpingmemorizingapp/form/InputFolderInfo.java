@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import kr.co.heepie.helpingmemorizingapp.R;
+import kr.co.heepie.helpingmemorizingapp.ui.DBManager;
 
 /**
  * Created by Hee_Ju.M on 2017-03-21.
@@ -23,7 +24,7 @@ public class InputFolderInfo extends Activity{
         final TextView name = (TextView)findViewById(R.id.input_folderName);
         final TextView description = (TextView)findViewById(R.id.input_folderDescription);
         final TextView color = (TextView)findViewById(R.id.input_folderColor);
-        final Intent intent = getIntent();
+        final Intent intent = new Intent();
 
 
         Button btn = (Button)findViewById(R.id.input_folderInfo);
@@ -33,11 +34,18 @@ public class InputFolderInfo extends Activity{
             @Override
             public void onClick(View v) {
                 Log.i("Heepie", "name: " + name.getText() + "description: " + description.getText() + "color: " + color.getText());
-                intent.putExtra("name", (String)name.getText())
-                      .putExtra("description", (String)description.getText())
-                      .putExtra("color", (String)color.getText());
+                if (name.getText() != "" && description.getText() != "" && color.getText() != "") {
+                    DBManager.insertFolderInfo();
+p
+
+//                    intent.putExtra("name", (String)name.getText())
+//                            .putExtra("description", (String)description.getText())
+//                            .putExtra("color", (String)color.getText());
+                    setResult(RESULT_OK, intent);
+                } else
+                    setResult(RESULT_CANCELED, intent);
+                finish();
             }
         });
-
     }
 }

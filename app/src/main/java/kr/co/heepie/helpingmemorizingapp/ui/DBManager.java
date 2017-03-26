@@ -1,7 +1,10 @@
 package kr.co.heepie.helpingmemorizingapp.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.util.Log;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -16,24 +19,31 @@ import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
  * Role: show data_input_form and data input, delete, search
  */
 
-public class DBManager {
+public class DBManager extends Activity {
+    static final int REQUEST_FOLDERDATA = 1;
+    static final int REQUEST_CARDDATA = 2;
     private Realm mRealm;
     private Intent intent;
-    private Context contenxt;
+    private Context context;
+    private Activity activity;
 
-
-    public DBManager(Context context) {
-        this.contenxt = context;
+    DBManager(Context context, Activity activity) {
+        this.context = context;
+        this.activity = activity;
     }
 
     public void showFolderInfoActivity() {
-        intent = new Intent(contenxt, InputFolderInfo.class);
-        contenxt.startActivity(intent);
+        intent = new Intent(context, InputFolderInfo.class);
+//        context.startActivity(intent);
+        activity.startActivityForResult(intent, REQUEST_FOLDERDATA);
+
+//        startActivityForResult(intent, REQUEST_FOLDERDATA);
     }
 
     public void showCardInfoActivity() {
-        intent = new Intent(contenxt, InputCardInfo.class);
-        contenxt.startActivity(intent);
+        intent = new Intent(context, InputCardInfo.class);
+//        startActivity(intent);
+//        startActivityForResult(intent, REQUEST_CARDDATA);
     }
 
     public void searchData() {}
@@ -62,9 +72,25 @@ public class DBManager {
         mRealm.commitTransaction();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("Heepie", "onActivity OK!");
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+            case REQUEST_FOLDERDATA:
+//                insertFolderData(data.getStringExtra("name"),
+//                                 data.getStringExtra("description"),
+//                                 data.getStringExtra("color"));
+                Log.i("Heepie", "Result OK!");
+            case REQUEST_CARDDATA:
 
 
-     /*
+            }
+        }
+    }
+
+/*
          * To check DB
          */
         /*
