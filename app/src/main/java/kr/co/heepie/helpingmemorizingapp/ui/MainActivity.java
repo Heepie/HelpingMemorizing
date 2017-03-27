@@ -20,33 +20,15 @@ import kr.co.heepie.helpingmemorizingapp.db.Folder;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private Realm mRealm;
     private DBManager dbManager = DBManager.getInstance();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // For calling activities in non-activity class
         dbManager.setContext(this);
-
-
-        try {
-            mRealm = Realm.getDefaultInstance();
-
-        } catch (Exception e) {
-
-            // Get a Realm instance for this thread
-            RealmConfiguration config = new RealmConfiguration.Builder()
-                    .deleteRealmIfMigrationNeeded()
-                    .build();
-            mRealm = Realm.getInstance(config);
-
-        }
-
-        final RealmResults<Folder> folderList = getFolderList();
-        final RealmResults<Card> cardList = getCardList();
 
         Button checkBtn = (Button) findViewById(R.id.main_checkBtn);
         Button testBtn = (Button) findViewById(R.id.main_testBtn);
@@ -54,15 +36,10 @@ public class MainActivity extends Activity {
         Button crtCardBtn = (Button) findViewById(R.id.main_crtCardBtn);
 
 
-
-
-
-
-
         checkBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Heepie", "CheckBtn Clicked");
+                Log.i("Heepie", TAG + "CheckBtn Clicked");
                 dbManager.searchData();
             }
         });
@@ -70,7 +47,7 @@ public class MainActivity extends Activity {
         testBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Heepie", "TestBtn Clicked");
+                Log.i("Heepie", TAG + "TestBtn Clicked");
                 dbManager.testActivity();
             }
         });
@@ -78,84 +55,17 @@ public class MainActivity extends Activity {
         crtFolderBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Heepie", "crtFolderBtnBtn Clicked");
+                Log.i("Heepie", TAG + "crtFolderBtnBtn Clicked");
                 dbManager.showFolderInfoActivity();
-                Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
             }
         });
 
         crtCardBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Heepie", "crtCardBtnBtn Clicked");
+                Log.i("Heepie", TAG + "crtCardBtnBtn Clicked");
                 dbManager.showCardInfoActivity();
             }
         });
-
-
-
-
-
-/*
-        Folder f = new Folder("Root");
-        f.setDescription("This is the Root Folder");
-        f.add(new Card("Design Pattern"));
-        f.add(new Card("Codeton"));
-
-        RealmList<Card> set = f.getSet();
-        Iterator<Card> iter = set.iterator();
-
-        while (iter.hasNext()) {
-            Card c = iter.next();
-            Log.i("Heepie", "Folder: " + f.getName() + "Card: " + c.getName());
-        }
-*/
-
-//        RealmResults<Folder> folderList = getFolderList();
-//        RealmResults<Card> cardList = getCardList();
-
-        Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
-
-/*
-        insertFolderData("Root", "This is Root Folder");
-        insertCardData("Design Pattern", "Singleton Pattern", "This is the pattern to make only one instance");
-
-        Log.i("Heepie", "FolderList Size: " + folderList.size() + "  CardList Size: " + cardList.size());
-
-        Log.i("Heepie", "Folder Name: " + folderList.where().findFirst().getName() + "  CardList Size: " + folderList.where().findFirst().getDescription());
-*/
-
-
-    }
-
-
-    private RealmResults<Folder> getFolderList() {
-        return mRealm.where(Folder.class).findAll();
-    }
-
-    private RealmResults<Card> getCardList() {
-        return mRealm.where(Card.class).findAll();
-    }
-
-
-    private void insertFolderData(String name, String description){
-        mRealm.beginTransaction();
-        Folder f = new Folder(name);
-        f.setDescription(description);
-        mRealm.insertOrUpdate(f);
-
-//        Folder f = mRealm.createObject(Folder.class, (String)name);
-//        f.setName(name);
-//        f.setDescription(description);
-        mRealm.commitTransaction();
-    }
-
-    private void insertCardData(String name, String concept, String description){
-        mRealm.beginTransaction();
-        Card c = mRealm.createObject(Card.class);
-        c.setName(name);
-        c.setConcept(concept);
-        c.setDescription(description);
-        mRealm.commitTransaction();
     }
 }
