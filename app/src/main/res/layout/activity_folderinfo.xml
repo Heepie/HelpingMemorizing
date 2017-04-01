@@ -35,7 +35,6 @@
             />
 
         <EditText
-            android:id="@+id/input_folderName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input name"
@@ -57,7 +56,6 @@
             />
 
         <EditText
-            android:id="@+id/input_folderDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input description"
