@@ -1,6 +1,8 @@
 package kr.co.heepie.helpingmemorizingapp.form;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +24,33 @@ public class InputFolderInfo extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_folderinfo);
+        setContentView(R.layout.activity_folderinfo2);
+
+        /*
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.getInfoFragment1, new Fragment1());
+        fragmentTransaction.add(R.id.getInfoFragment2, new Fragment1());
+//        fragmentTransaction.replace(R.id.getInfoFragment1, new Fragment1());
+//        fragmentTransaction.replace(R.id.getInfoFragment2, new Fragment2());
+        fragmentTransaction.commit();
+*/
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         final TextView name = (TextView)findViewById(R.id.input_folderName);
         final TextView description = (TextView)findViewById(R.id.input_folderDescription);
@@ -49,5 +77,6 @@ public class InputFolderInfo extends Activity{
                 finish();
             }
         });
+        */
     }
 }
