@@ -1,6 +1,7 @@
 package kr.co.heepie.helpingmemorizingapp.form;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -19,12 +20,28 @@ import kr.co.heepie.helpingmemorizingapp.ui.MainActivity;
  */
 
 public class InputFolderInfo extends Activity{
+    private static final String TAG = InputFolderInfo.class.getSimpleName();
     private DBManager dbManager = DBManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_folderinfo2);
+
+
+
+        Button btn = (Button)findViewById(R.id.createFolder);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment1 fragment1 = (Fragment1)getFragmentManager().findFragmentById(R.id.getInfoFragment1);
+                dbManager.insertFolderData(fragment1.getFolderName(), fragment1.getDescription(), null);
+
+                finish();
+            }
+        });
+
 
         /*
         FragmentManager fm = getFragmentManager();
