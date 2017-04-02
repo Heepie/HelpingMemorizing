@@ -51,7 +51,7 @@ public class AlarmHelper extends BroadcastReceiver {
     public void registerAlarm() {
         manager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
 
-        receiverIntent = new Intent(context, this.getClass());
+        receiverIntent = new Intent(context, AlarmHelper.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, receiverIntent, 0);
 
         long period = 1000 * 5;
@@ -59,31 +59,15 @@ public class AlarmHelper extends BroadcastReceiver {
         long t = SystemClock.elapsedRealtime();
 
         manager.setRepeating(ELAPSED_REALTIME_WAKEUP, t + after, period, pendingIntent);
-        Log.i(TAG, "register OK");
+        Log.i("Heepie", "register OK");
 
     }
-
-
-
 
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Notification.Builder mBuilder = new Notification.Builder(context);
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
-        mBuilder.setTicker("hi");
-        mBuilder.setContentTitle("hi1");
-        mBuilder.setContentText("hi3");
-
-        mBuilder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
-        //mBuilder.setContentIntent(pendingIntent);
-        mBuilder.setAutoCancel(true);
-
-        nm.notify(111, mBuilder.build());
-        Log.i(TAG, "Receive OK");
+        Log.i("Heepie", "Receive OK");
     }
 }
