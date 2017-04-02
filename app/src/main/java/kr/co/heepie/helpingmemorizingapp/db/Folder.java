@@ -14,10 +14,79 @@ public class Folder extends RealmObject {
     @Required
     private String name;
 
-    private RealmList<Card> list = new RealmList<Card>();
     private String description;
-    private String color;
+    private String upperFolder;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUpperFolder(String upperFolder) {
+        this.upperFolder = upperFolder;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUpperFolder() {
+        return upperFolder;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public static class FolderBuilder {
+        private Folder folder;
+
+        private FolderBuilder() {
+            folder = new Folder();
+        }
+
+        public static FolderBuilder startBuild() {
+            return new FolderBuilder();
+        }
+
+        public FolderBuilder setName(String name) {
+            folder.setName(name);
+            return this;
+        }
+
+        public FolderBuilder setUpperFolder(String upperFolder) {
+            folder.setUpperFolder(upperFolder);
+            return this;
+        }
+
+        public FolderBuilder setDescription(String description) {
+            folder.setDescription(description);
+            return this;
+        }
+
+        public Folder finishBuild() {
+            return folder;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     public Folder() { }
 
     public Folder(String name) {
@@ -57,5 +126,6 @@ public class Folder extends RealmObject {
     public void remove(Card c) {
         list.remove(c);
     }
+*/
 
 }

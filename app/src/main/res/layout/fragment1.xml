@@ -21,7 +21,6 @@
         >
 
         <EditText
-            android:id="@+id/input_folderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Folder Name"
@@ -30,7 +29,6 @@
             />
 
         <EditText
-            android:id="@+id/input_folderDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Folder Description"

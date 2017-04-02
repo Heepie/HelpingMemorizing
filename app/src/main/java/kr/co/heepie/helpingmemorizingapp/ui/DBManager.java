@@ -65,29 +65,37 @@ public class DBManager {
 //        startActivityForResult(intent, REQUEST_CARDDATA);
     }
 
+
     public void searchData() {}
+
 
     public void testActivity() {}
 
-    public void insertFolderData(String name, String description, String color){
+    public void insertFolderData(String name, String description, String upperFolder){
         mRealm.beginTransaction();
 
-        Folder f = new Folder(name);
-        f.setDescription(description);
-        f.setColor(color);
-        mRealm.insertOrUpdate(f);
+        Folder f = Folder.FolderBuilder
+                         .startBuild()
+                         .setName(name)
+                         .setDescription(description)
+                         .setUpperFolder(upperFolder)
+                         .finishBuild();
 
+        mRealm.insertOrUpdate(f);
         mRealm.commitTransaction();
     }
 
-    public void insertCardData(String name, String concept, String description){
+    public void insertCardData(String name, String concept, String description, String upperFolder){
         mRealm.beginTransaction();
 
-        Card c = new Card(name);
-        c.setConcept(concept);
-        c.setDescription(description);
-        mRealm.insertOrUpdate(c);
+        Card c = Card.cardBuilder
+                     .startBuild()
+                     .setName(name)
+                     .setDescription(description)
+                     .setUpperFolder(upperFolder)
+                     .finishBuild();
 
+        mRealm.insertOrUpdate(c);
         mRealm.commitTransaction();
     }
 

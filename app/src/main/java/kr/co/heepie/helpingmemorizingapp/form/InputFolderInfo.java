@@ -26,24 +26,25 @@ public class InputFolderInfo extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_folderinfo2);
+        setContentView(R.layout.activity_folderinfo);
+//        setContentView(R.layout.activity_folderinfo2);
 
 
 
-        Button btn = (Button)findViewById(R.id.createFolder);
+//        Button btn = (Button)findViewById(R.id.createFolder);
+//
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Fragment1 fragment1 = (Fragment1)getFragmentManager().findFragmentById(R.id.getInfoFragment1);
+//                dbManager.insertFolderData(fragment1.getFolderName(), fragment1.getDescription(), null);
+//
+//                finish();
+//            }
+//        });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment1 fragment1 = (Fragment1)getFragmentManager().findFragmentById(R.id.getInfoFragment1);
-                dbManager.insertFolderData(fragment1.getFolderName(), fragment1.getDescription(), null);
 
-                finish();
-            }
-        });
-
-
-        /*
+/*
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.add(R.id.getInfoFragment1, new Fragment1());
@@ -52,26 +53,10 @@ public class InputFolderInfo extends Activity{
 //        fragmentTransaction.replace(R.id.getInfoFragment2, new Fragment2());
         fragmentTransaction.commit();
 */
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         final TextView name = (TextView)findViewById(R.id.input_folderName);
         final TextView description = (TextView)findViewById(R.id.input_folderDescription);
-        final TextView color = (TextView)findViewById(R.id.input_folderColor);
+        final TextView upperFolder = (TextView)findViewById(R.id.input_upperFolder);
         final Intent intent = new Intent();
 
 
@@ -81,9 +66,9 @@ public class InputFolderInfo extends Activity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Heepie", "name: " + name.getText() + "description: " + description.getText() + "color: " + color.getText());
-                if (name.getText() != "" && description.getText() != "" && color.getText() != "") {
-                    dbManager.insertFolderData(name.getText().toString(), description.getText().toString(), color.getText().toString());
+                Log.i("Heepie", "name: " + name.getText() + "description: " + description.getText() + "color: " + upperFolder.getText());
+                if (name.getText() != "" && description.getText() != "" && upperFolder.getText() != "") {
+                    dbManager.insertFolderData(name.getText().toString(), description.getText().toString(), upperFolder.getText().toString());
 
 //                    intent.putExtra("name", (String)name.getText())
 //                            .putExtra("description", (String)description.getText())
@@ -94,6 +79,5 @@ public class InputFolderInfo extends Activity{
                 finish();
             }
         });
-        */
     }
 }
