@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import kr.co.heepie.helpingmemorizingapp.R;
+import kr.co.heepie.helpingmemorizingapp.ui.AlarmHelper;
 import kr.co.heepie.helpingmemorizingapp.ui.DBManager;
 import kr.co.heepie.helpingmemorizingapp.ui.MainActivity;
 
@@ -23,12 +24,16 @@ public class InputFolderInfo extends Activity{
     private static final String TAG = InputFolderInfo.class.getSimpleName();
     private DBManager dbManager = DBManager.getInstance();
 
+    private AlarmHelper alarmHelper = AlarmHelper.getInstance();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_folderinfo);
 //        setContentView(R.layout.activity_folderinfo2);
 
+        alarmHelper.setContext(this);
 
 
 //        Button btn = (Button)findViewById(R.id.createFolder);
@@ -74,6 +79,11 @@ public class InputFolderInfo extends Activity{
 //                            .putExtra("description", (String)description.getText())
 //                            .putExtra("color", (String)color.getText());
 //                    setResult(RESULT_OK, intent);
+
+
+                    alarmHelper.registerAlarm();
+
+
                 } else
                     setResult(RESULT_CANCELED, intent);
                 finish();

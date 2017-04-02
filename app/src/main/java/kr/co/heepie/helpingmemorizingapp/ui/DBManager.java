@@ -36,8 +36,8 @@ public class DBManager {
 
             // Get a Realm instance for this thread
             RealmConfiguration config = new RealmConfiguration.Builder()
-                    .deleteRealmIfMigrationNeeded()
-                    .build();
+                                                              .deleteRealmIfMigrationNeeded()
+                                                              .build();
             mRealm = Realm.getInstance(config);
 
         }
