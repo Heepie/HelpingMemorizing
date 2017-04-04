@@ -1,16 +1,10 @@
-package kr.co.heepie.helpingmemorizingapp.ui;
+package kr.co.heepie.helpingmemorizingapp.db;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.util.Log;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
-import kr.co.heepie.helpingmemorizingapp.db.Card;
-import kr.co.heepie.helpingmemorizingapp.db.Folder;
 import kr.co.heepie.helpingmemorizingapp.form.InputCardInfo;
 import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
 

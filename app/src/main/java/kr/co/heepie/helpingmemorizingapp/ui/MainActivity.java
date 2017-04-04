@@ -1,22 +1,13 @@
 package kr.co.heepie.helpingmemorizingapp.ui;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Iterator;
-import java.util.Set;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmList;
-import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.R;
-import kr.co.heepie.helpingmemorizingapp.db.Card;
-import kr.co.heepie.helpingmemorizingapp.db.Folder;
+import kr.co.heepie.helpingmemorizingapp.db.DBManager;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();

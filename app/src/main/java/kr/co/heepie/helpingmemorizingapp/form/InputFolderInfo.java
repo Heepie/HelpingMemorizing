@@ -1,9 +1,6 @@
 package kr.co.heepie.helpingmemorizingapp.form;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,9 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import kr.co.heepie.helpingmemorizingapp.R;
-import kr.co.heepie.helpingmemorizingapp.ui.AlarmHelper;
-import kr.co.heepie.helpingmemorizingapp.ui.DBManager;
-import kr.co.heepie.helpingmemorizingapp.ui.MainActivity;
+import kr.co.heepie.helpingmemorizingapp.db.DBManager;
 
 /**
  * Created by Hee_Ju.M on 2017-03-21.
@@ -24,7 +19,6 @@ public class InputFolderInfo extends Activity{
     private static final String TAG = InputFolderInfo.class.getSimpleName();
     private DBManager dbManager = DBManager.getInstance();
 
-    private AlarmHelper alarmHelper = AlarmHelper.getInstance();
 
 
     @Override
@@ -33,7 +27,6 @@ public class InputFolderInfo extends Activity{
         setContentView(R.layout.activity_folderinfo);
 //        setContentView(R.layout.activity_folderinfo2);
 
-        alarmHelper.setContext(this);
 
 
 //        Button btn = (Button)findViewById(R.id.createFolder);
@@ -81,7 +74,6 @@ public class InputFolderInfo extends Activity{
 //                    setResult(RESULT_OK, intent);
 
 
-                    alarmHelper.registerAlarm();
 
 
                 } else
