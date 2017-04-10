@@ -35,6 +35,8 @@ public class SetAlarm implements Runnable{
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
 
         // Sets an alarm - note this alarm will be lost if the phone is turned off and on again
+        
+        // Set 6 times (after 1hour, 1day, 3day, 1week, 1 month, 3month)
         am.set(AlarmManager.RTC, date.getTimeInMillis(), pendingIntent);
     }
 }
