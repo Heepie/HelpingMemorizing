@@ -7,6 +7,8 @@ import android.content.ServiceConnection;
 import android.icu.util.Calendar;
 import android.os.IBinder;
 
+import kr.co.heepie.helpingmemorizingapp.form.InputCardInfo;
+
 /**
  * Created by Hee_Ju.M on 2017-04-04.
  */
@@ -15,41 +17,21 @@ public class AlarmHelper {
     // The context to start the service in
     private Context context;
     private RegisterService registerService;
-    private boolean isBind = false;
 
-    public AlarmHelper(Context context) {
-        this.context = context;
+    AlarmHelper(Context context) {this.context = context;}
+
+
+    // RegisterService Start.
+    public void startRegisterService() {
+        Intent intent = new Intent(context, RegisterService.class);
+        context.startService(intent);
     }
 
-    public void doBindService() {
-        context.bindService(new Intent(context, RegisterService.class), connection, Context.BIND_AUTO_CREATE);
-        isBind = true;
-    }
-
-
-    private ServiceConnection connection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            registerService = ((RegisterService.ServiceBinder) service).getService();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            registerService = null;
-        }
-    };
-
+    // Alarm setting by using the RegisterService
     public void setAlarm(Calendar c) {
-
+        registerService.setAlarm(c);
     }
 
-    public void doUnbindService() {
-        if (isBind) {
-            // Detach our existing connection.
-            context.unbindService(connection);
-            isBind = false;
-        }
-    }
 
 
 }

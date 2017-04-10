@@ -35,6 +35,7 @@
             />
 
         <EditText
+            android:id="@+id/input_CardName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input Concept"
@@ -56,6 +57,7 @@
             />
 
         <EditText
+            android:id="@+id/input_CardDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input description"
@@ -81,23 +83,6 @@
             android:layout_height="wrap_content">
 
         </Spinner>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Repeat period setting"
-            />
-
-
 
     </LinearLayout>
 

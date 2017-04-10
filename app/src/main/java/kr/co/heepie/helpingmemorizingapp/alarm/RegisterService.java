@@ -33,6 +33,7 @@ public class RegisterService extends Service {
     }
 
     public void setAlarm(Calendar c) {
-
+        // Set Alarm by using the thread.
+        new SetAlarm(this, c).run();
     }
 }

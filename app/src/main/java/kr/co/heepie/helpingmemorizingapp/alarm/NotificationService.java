@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.app.NotificationBuilderWithBuilderAccessor;
 import android.util.Log;
 
 import kr.co.heepie.helpingmemorizingapp.form.DetialCardInfo;
@@ -17,6 +18,7 @@ import kr.co.heepie.helpingmemorizingapp.form.DetialCardInfo;
  */
 
 public class NotificationService extends Service {
+    Notification notifi;
 
     /**
      * Class for clients to access
@@ -40,6 +42,8 @@ public class NotificationService extends Service {
         mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
 
+
+    // Start notification directly
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("LocalService", "Received start id " + startId + ": " + intent);
@@ -64,31 +68,27 @@ public class NotificationService extends Service {
      * Creates a notification and shows it in the OS drag-down status bar
      */
     private void showNotification() {
-        // This is the 'title' of the notification
-        CharSequence title = "Alarm!!";
-        // This is the icon to use on the notification
-        int icon = R.drawable.ic_dialog_alert;
-        // This is the scrolling text of the notification
-        CharSequence text = "Your notification time is upon us.";
-        // What time to show on the notification
+        Intent intent = new Intent(NotificationService.this, DetialCardInfo.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(NotificationService.this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        notifi = new Notification.Builder(getApplicationContext())
+                .setContentTitle("Content Title")
+                .setContentText("Content Text")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setTicker("알림!!!")
+                .setContentIntent(pendingIntent)
+                .build();
+
+        //Set sound
+        notifi.defaults = Notification.DEFAULT_SOUND;
+
+        notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+
+        notifi.flags = Notification.FLAG_AUTO_CANCEL;
         long time = System.currentTimeMillis();
 
-//        Notification notification = new Notification(icon, text, time);
-
-
-
-        // The PendingIntent to launch our activity if the user selects this notification
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, DetialCardInfo.class), 0);
-
-        Notification notification = new Notification.Builder(this)
-                                                    .setContentTitle(title)
-                                                    .setContentText(text)
-                                                    .setSmallIcon(icon)
-                                                    .setContentIntent(contentIntent)
-                                                    .build();
-
         // Send the notification to the system.
-        mNM.notify(NOTIFICATION, notification);
+        mNM.notify(NOTIFICATION, notifi);
 
         // Stop the service when we are finished
         stopSelf();

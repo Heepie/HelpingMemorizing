@@ -55,11 +55,8 @@ public class InputFolderInfo extends Activity{
         final TextView name = (TextView)findViewById(R.id.input_folderName);
         final TextView description = (TextView)findViewById(R.id.input_folderDescription);
         final TextView upperFolder = (TextView)findViewById(R.id.input_upperFolder);
-        final Intent intent = new Intent();
-
 
         Button btn = (Button)findViewById(R.id.input_folderInfo);
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,11 +70,9 @@ public class InputFolderInfo extends Activity{
 //                            .putExtra("color", (String)color.getText());
 //                    setResult(RESULT_OK, intent);
 
-
-
-
-                } else
-                    setResult(RESULT_CANCELED, intent);
+                } else {
+                    Log.i("Heepie", "Input Error");
+                }
                 finish();
             }
         });
