@@ -13,87 +13,106 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="kr.co.heepie.helpingmemorizingapp.ui.MainActivity">
 
-    <TextView
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Input Card Info"
-        android:textSize="30dp"
-        android:gravity="center"
-        />
+        android:layout_height="wrap_content" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Concept: "
-            />
-
-        <EditText
-            android:id="@+id/input_CardName"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="input Concept"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Input Card Info"
+                android:textSize="30dp"
+                android:gravity="center"
+                />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description: "
-            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Concept: "
+                    />
 
-        <EditText
-            android:id="@+id/input_CardDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="input description"
-            />
+                <EditText
+                    android:id="@+id/input_CardName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="input Concept"
+                    />
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Folder "
-            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description: "
+                    />
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/input_CardDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="input description"
+                    />
 
-        </Spinner>
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
 
-    <cala
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Folder "
+                    />
 
-    <Button
-        android:id="@+id/input_cardInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Create"
-        />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </Spinner>
+
+            </LinearLayout>
+
+            <DatePicker
+                android:id="@+id/scheduleTimePicker"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/input_cardInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Create"
+                android:onClick="setOnClick"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>

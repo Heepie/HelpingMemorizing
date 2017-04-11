@@ -55,6 +55,7 @@ public class DBManager {
 
     public void showCardInfoActivity() {
         intent = new Intent(context, InputCardInfo.class);
+        context.startActivity(intent);
 //        startActivity(intent);
 //        startActivityForResult(intent, REQUEST_CARDDATA);
     }

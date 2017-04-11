@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * Created by Hee_Ju.M on 2017-04-04.
@@ -14,7 +15,9 @@ import android.support.annotation.Nullable;
 public class RegisterService extends Service {
     private final IBinder binder = new ServiceBinder();
 
-
+    /**
+     * Class for clients to access
+     */
     public class ServiceBinder extends Binder {
         RegisterService getService() {
             return RegisterService.this;
@@ -33,6 +36,7 @@ public class RegisterService extends Service {
     }
 
     public void setAlarm(Calendar c) {
+        Log.i("Heepie", "RegisterService: " + c.toString());
         // Set Alarm by using the thread.
         new SetAlarm(this, c).run();
     }
