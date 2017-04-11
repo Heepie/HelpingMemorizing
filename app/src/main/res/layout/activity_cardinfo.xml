@@ -86,6 +86,8 @@
 
     </LinearLayout>
 
+    <cala
+
     <Button
         android:id="@+id/input_cardInfo"
         android:layout_width="wrap_content"

@@ -5,12 +5,12 @@ package kr.co.heepie.helpingmemorizingapp.alarm;
  */
 
 
-import java.util.Calendar;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+
+import java.util.Calendar;
 
 public class SetAlarm implements Runnable{
     // The date selected for the alarm
@@ -25,6 +25,9 @@ public class SetAlarm implements Runnable{
         this.am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         this.date = date;
     }
+
+
+
 
     @Override
     public void run() {

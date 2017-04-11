@@ -7,8 +7,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
-import android.support.v4.app.NotificationBuilderWithBuilderAccessor;
 import android.util.Log;
 
 import kr.co.heepie.helpingmemorizingapp.form.DetialCardInfo;
@@ -71,13 +71,15 @@ public class NotificationService extends Service {
         Intent intent = new Intent(NotificationService.this, DetialCardInfo.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(NotificationService.this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
-        notifi = new Notification.Builder(getApplicationContext())
-                .setContentTitle("Content Title")
-                .setContentText("Content Text")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setTicker("알림!!!")
-                .setContentIntent(pendingIntent)
-                .build();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            notifi = new Notification.Builder(getApplicationContext())
+                    .setContentTitle("Content Title")
+                    .setContentText("Content Text")
+                    .setSmallIcon(R.mipmap.sym_def_app_icon)
+                    .setTicker("알림!!!")
+                    .setContentIntent(pendingIntent)
+                    .build();
+        }
 
         //Set sound
         notifi.defaults = Notification.DEFAULT_SOUND;
