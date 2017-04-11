@@ -1,14 +1,12 @@
 package kr.co.heepie.helpingmemorizingapp.form;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import kr.co.heepie.helpingmemorizingapp.R;
-import kr.co.heepie.helpingmemorizingapp.alarm.RegisterService;
 
 
 /**
@@ -32,9 +30,7 @@ public class InputCardInfo extends Activity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // BackgroundService Start
-
 
                 // Register Alarm 6 times.
             }
