@@ -21,11 +21,16 @@ import kr.co.heepie.helpingmemorizingapp.alarm.AlarmHelper;
 public class InputCardInfo extends Activity{
     private TextView name, description;
     private DatePicker picker;
+    private AlarmHelper alarmHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardinfo);
+
+        AlarmHelper alarmHelper = AlarmHelper.getInstance();
+        Log.i("Heepie", alarmHelper.toString());
+        alarmHelper.setContext(this);
 
         name = (TextView)findViewById(R.id.input_CardName);
         description = (TextView)findViewById(R.id.input_CardDescription);
@@ -36,8 +41,6 @@ public class InputCardInfo extends Activity{
     }
 
     public void setOnClick(View v) {
-        AlarmHelper alarmHelper = AlarmHelper.getInstance();
-        alarmHelper.setContext(this);
 
         int year, month, day;
 
