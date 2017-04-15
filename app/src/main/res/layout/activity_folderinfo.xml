@@ -93,5 +93,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Create"
+        android:onClick="onClickFolderCreate"
         />
 </LinearLayout>

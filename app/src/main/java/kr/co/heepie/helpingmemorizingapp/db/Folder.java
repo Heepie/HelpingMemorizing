@@ -41,6 +41,7 @@ public class Folder extends RealmObject {
         return description;
     }
 
+    // Builder Pattern
     public static class FolderBuilder {
         private Folder folder;
 

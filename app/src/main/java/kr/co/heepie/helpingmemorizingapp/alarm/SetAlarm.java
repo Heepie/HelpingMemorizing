@@ -26,9 +26,6 @@ public class SetAlarm implements Runnable{
         this.date = date;
     }
 
-
-
-
     @Override
     public void run() {
         // Request to start are service when the alarm date is upon us

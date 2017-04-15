@@ -14,15 +14,15 @@ import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
  * Role: show data_input_form and data input, delete, search
  */
 
-public class DBManager {
-    private static DBManager instance;
+public class DBHelper {
+    private static DBHelper instance;
     private static Realm mRealm;
     private Intent intent;
     private Context context;
 
-    // Singleton
+    // Singleton Pattern
     // initialize the instance
-    public static synchronized DBManager getInstance() {
+    public static synchronized DBHelper getInstance() {
         try {
             mRealm = Realm.getDefaultInstance();
 
@@ -33,11 +33,10 @@ public class DBManager {
                                                               .deleteRealmIfMigrationNeeded()
                                                               .build();
             mRealm = Realm.getInstance(config);
-
         }
 
         if (instance == null) {
-            instance = new DBManager();
+            instance = new DBHelper();
         }
         return instance;
     }
@@ -49,20 +48,14 @@ public class DBManager {
     public void showFolderInfoActivity() {
         intent = new Intent(context, InputFolderInfo.class);
         context.startActivity(intent);
-//        activity.startActivityForResult(intent, REQUEST_FOLDERDATA);
-//        startActivityForResult(intent, REQUEST_FOLDERDATA);
     }
 
     public void showCardInfoActivity() {
         intent = new Intent(context, InputCardInfo.class);
         context.startActivity(intent);
-//        startActivity(intent);
-//        startActivityForResult(intent, REQUEST_CARDDATA);
     }
 
-
     public void searchData() {}
-
 
     public void testActivity() {}
 
@@ -80,7 +73,7 @@ public class DBManager {
         mRealm.commitTransaction();
     }
 
-    public void insertCardData(String name, String concept, String description, String upperFolder){
+    public void insertCardData(String name, String description, String upperFolder){
         mRealm.beginTransaction();
 
         Card c = Card.cardBuilder
@@ -93,5 +86,4 @@ public class DBManager {
         mRealm.insertOrUpdate(c);
         mRealm.commitTransaction();
     }
-
 }

@@ -7,11 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import kr.co.heepie.helpingmemorizingapp.R;
-import kr.co.heepie.helpingmemorizingapp.db.DBManager;
+import kr.co.heepie.helpingmemorizingapp.db.DBHelper;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private DBManager dbManager = DBManager.getInstance();
+    private DBHelper dbManager = DBHelper.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

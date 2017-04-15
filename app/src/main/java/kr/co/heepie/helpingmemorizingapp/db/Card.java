@@ -44,6 +44,7 @@ public class Card extends RealmObject {
         return upperFolder;
     }
 
+    // Builder Pattern
     public static class cardBuilder {
         private Card card;
 
