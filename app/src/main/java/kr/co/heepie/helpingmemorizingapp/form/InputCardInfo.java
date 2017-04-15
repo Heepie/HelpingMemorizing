@@ -21,7 +21,7 @@ import kr.co.heepie.helpingmemorizingapp.db.DBHelper;
  */
 
 public class InputCardInfo extends Activity{
-    private DBHelper dbManager = DBHelper.getInstance();
+    private DBHelper dbHelper = DBHelper.getInstance();
     private AlarmHelper alarmHelper;
     private TextView name, description;
     private DatePicker picker;
@@ -47,7 +47,7 @@ public class InputCardInfo extends Activity{
 
     public void onClickCardCreate(View v) {
         if (name.getText() != "" && description.getText() != "") {
-            dbManager.insertCardData(name.getText().toString(), description.getText().toString(), "N");
+            dbHelper.insertCardData(name.getText().toString(), description.getText().toString(), "N");
         } else {
             Toast.makeText(this, "Fill all", Toast.LENGTH_LONG);
         }

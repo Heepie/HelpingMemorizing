@@ -3,8 +3,11 @@ package kr.co.heepie.helpingmemorizingapp.db;
 import android.content.Context;
 import android.content.Intent;
 
+import java.util.Iterator;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.form.InputCardInfo;
 import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
 
@@ -55,7 +58,10 @@ public class DBHelper {
         context.startActivity(intent);
     }
 
-    public void searchData() {}
+    public String[] searchAllFolderData() {
+        RealmResults<Folder> result = mRealm.where(Folder.class).findAll();
+        return (String[])result.toArray();
+    }
 
     public void testActivity() {}
 

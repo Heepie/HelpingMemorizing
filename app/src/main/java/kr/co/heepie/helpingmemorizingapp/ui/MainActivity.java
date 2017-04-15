@@ -11,7 +11,7 @@ import kr.co.heepie.helpingmemorizingapp.db.DBHelper;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private DBHelper dbManager = DBHelper.getInstance();
+    private DBHelper dbHelper = DBHelper.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // For calling activities in non-activity class
-        dbManager.setContext(this);
+        dbHelper.setContext(this);
 
         Button checkBtn = (Button) findViewById(R.id.main_checkBtn);
         Button testBtn = (Button) findViewById(R.id.main_testBtn);
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i("Heepie", TAG + "CheckBtn Clicked");
-                dbManager.searchData();
+                dbHelper.searchAllFolderData();
             }
         });
 
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i("Heepie", TAG + "TestBtn Clicked");
-                dbManager.testActivity();
+                dbHelper.testActivity();
             }
         });
 
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i("Heepie", TAG + "crtFolderBtnBtn Clicked");
-                dbManager.showFolderInfoActivity();
+                dbHelper.showFolderInfoActivity();
             }
         });
 
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Log.i("Heepie", TAG + "crtCardBtnBtn Clicked");
-                dbManager.showCardInfoActivity();
+                dbHelper.showCardInfoActivity();
             }
         });
     }
