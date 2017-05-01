@@ -27,6 +27,8 @@
         <service android:name=".alarm.RegisterService"/>
         <service android:name=".alarm.NotificationService"/>
 
+        <activity android:name=".ui.AddAlarm"/>
+
     </application>
 
 </manifest>

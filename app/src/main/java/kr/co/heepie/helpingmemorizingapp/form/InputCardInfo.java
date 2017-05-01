@@ -1,10 +1,10 @@
 package kr.co.heepie.helpingmemorizingapp.form;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +14,7 @@ import java.util.Calendar;
 import kr.co.heepie.helpingmemorizingapp.R;
 import kr.co.heepie.helpingmemorizingapp.alarm.AlarmHelper;
 import kr.co.heepie.helpingmemorizingapp.db.DBHelper;
+import kr.co.heepie.helpingmemorizingapp.ui.AddAlarm;
 
 
 /**
@@ -29,7 +30,7 @@ public class InputCardInfo extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardinfo);
+        setContentView(R.layout.activity_cardinfo2);
 
         // Get AlarmHelper instance and set context
         alarmHelper = AlarmHelper.getInstance();
@@ -39,7 +40,7 @@ public class InputCardInfo extends Activity{
 
         name = (TextView)findViewById(R.id.input_CardName);
         description = (TextView)findViewById(R.id.input_CardDescription);
-        picker = (DatePicker) findViewById(R.id.scheduleTimePicker);
+//        picker = (DatePicker) findViewById(R.id.scheduleTimePicker);
 
 //        final TextView upperFolder = (TextView)findViewById(R.id.input_upperFolder);
 
@@ -68,4 +69,10 @@ public class InputCardInfo extends Activity{
         // Register Alarm 6 times.
         alarmHelper.setAlarm(c);
     }
+
+    public void onClickAddAlrm(View v) {
+        Intent intent = new Intent(this, AddAlarm.class);
+        startActivity(intent);
+    }
+
 }
