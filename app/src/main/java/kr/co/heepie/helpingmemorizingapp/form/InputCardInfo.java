@@ -53,6 +53,9 @@ public class InputCardInfo extends Activity{
             Toast.makeText(this, "Fill all", Toast.LENGTH_LONG);
         }
 
+        // Register alarms from the tmp vector.
+        // for (number of vector) { alarmHelper.setAlarm(year, month, day, hour, minutes); }
+
 
         int year = picker.getYear();
         int month = picker.getMonth();;
