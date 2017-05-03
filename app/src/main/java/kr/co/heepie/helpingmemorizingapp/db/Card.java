@@ -8,18 +8,16 @@ import io.realm.annotations.Required;
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public class Card extends RealmObject {
+public class Card extends Component {
 
     @PrimaryKey
     @Required
     private String name;
 
     private String description;
-    private String upperFolder;
 
     // Alarm Period
     //private Object alarmPeriod;
-
     public void setName(String name) {
         this.name = name;
     }
@@ -28,20 +26,14 @@ public class Card extends RealmObject {
         this.description = description;
     }
 
-    public void setUpperFolder(String upperFolder) {
-        this.upperFolder = upperFolder;
-    }
 
     public String getName() {
         return name;
     }
 
+
     public String getDescription() {
         return description;
-    }
-
-    public String getUpperFolder() {
-        return upperFolder;
     }
 
     // Builder Pattern
@@ -63,11 +55,6 @@ public class Card extends RealmObject {
 
         public cardBuilder setDescription(String description) {
             card.setDescription(description);
-            return this;
-        }
-
-        public cardBuilder setUpperFolder(String upperFolder) {
-            card.setUpperFolder(upperFolder);
             return this;
         }
 

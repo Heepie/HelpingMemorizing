@@ -1,5 +1,7 @@
 package kr.co.heepie.helpingmemorizingapp.db;
 
+import java.util.ArrayList;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -9,33 +11,36 @@ import io.realm.annotations.Required;
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public class Folder extends RealmObject {
+public class Folder extends Component {
     @PrimaryKey
     @Required
     private String name;
 
     private String description;
-    private String upperFolder;
+    private RealmList<Component> list = new RealmList<>();
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setUpperFolder(String upperFolder) {
-        this.upperFolder = upperFolder;
+    public Folder addComponent(Component obj) {
+        list.add(obj);
+        return this;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+
     public String getName() {
         return name;
     }
 
-    public String getUpperFolder() {
-        return upperFolder;
+    public RealmList<Component> getList() {
+        return list;
     }
+
 
     public String getDescription() {
         return description;
@@ -55,11 +60,6 @@ public class Folder extends RealmObject {
 
         public FolderBuilder setName(String name) {
             folder.setName(name);
-            return this;
-        }
-
-        public FolderBuilder setUpperFolder(String upperFolder) {
-            folder.setUpperFolder(upperFolder);
             return this;
         }
 

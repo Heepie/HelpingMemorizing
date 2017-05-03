@@ -32,8 +32,9 @@ public class InputFolderInfo extends Activity{
         upperFolder = (TextView)findViewById(R.id.input_upperFolder);
         spinner = (Spinner) findViewById(R.id.select_folderSpinner);
 
-        String[] str = dbHelper.searchAllFolderData();
-        ArrayAdapter<String> list = new ArrayAdapter<String> (this, R.layout.support_simple_spinner_dropdown_item, str);
+//        dbHelper.searchAllFolderData();
+        Object[] str = dbHelper.searchAllFolderData();
+        ArrayAdapter<Object> list = new ArrayAdapter<Object> (this, R.layout.support_simple_spinner_dropdown_item, str);
         spinner.setAdapter(list);
     }
 

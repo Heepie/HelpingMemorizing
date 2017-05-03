@@ -35,8 +35,8 @@ public class AlarmListView extends LinearLayout {
 
             @Override
             public void onClick(View v) {
-                if(onRemoveButtonClickListner != null)
-                    onRemoveButtonClickListner.onClicked(item.hh, item.mm, item.reqCode, position);
+//                if(onRemoveButtonClickListner != null)
+//                    onRemoveButtonClickListner.onClicked(item.hh, item.mm, item.reqCode, position);
             }
         });
     }
@@ -52,12 +52,17 @@ public class AlarmListView extends LinearLayout {
         this.onRemoveButtonClickListner = onRemoveButtonClickListner;
     }
 
-    public boolean setData(AlarmListItem item, int position){
+    public boolean setAlarm(AlarmListItem item, int position){
 
         this.item = item;
         this.position = position;
 
-        textViewTime.setText(item.hh+":"+item.mm +" and requestCode : "+item.reqCode);
+        textViewTime.setText(item.getYear() + "." +
+                             item.getMonth() + "." +
+                             item.getDay() + "." +
+                             item.getHour() + "." +
+                             item.getMinute() + " " +
+                             item.getReqCode());
 
         return true;
     }

@@ -2,21 +2,40 @@ package kr.co.heepie.helpingmemorizingapp.alarm;
 
 // list item layout
 public class AlarmListItem {
-	public int hh;
-	public int mm;
-	public int reqCode;
+	private int year, month, day, hour, minute;
+	private int reqCode;
 
-	public AlarmListItem(int hh, int mm, int reqCode) {
-		this.hh = hh;
-		this.mm = mm;
+	public AlarmListItem(int year, int month, int day, int hour, int minute, int reqCode) {
+		this.year = year;
+		this.minute = minute;
+		this.day = day;
+		this.hour = hour;
+		this.minute = minute;
 		this. reqCode = reqCode;
 	}
-	
-	@Override
-	public String toString() {
-		return hh+":"+mm +" and requestCode : "+reqCode;
+
+	public int getYear() {
+		return year;
 	}
 
+	public int getMonth() {
+		return month;
+	}
 
+	public int getDay() {
+		return day;
+	}
+
+	public int getHour() {
+		return hour;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
+
+	public int getReqCode() {
+		return reqCode;
+	}
 }
 

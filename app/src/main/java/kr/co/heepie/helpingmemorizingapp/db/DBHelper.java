@@ -2,6 +2,7 @@ package kr.co.heepie.helpingmemorizingapp.db;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import java.util.Iterator;
 
@@ -22,6 +23,8 @@ public class DBHelper {
     private static Realm mRealm;
     private Intent intent;
     private Context context;
+
+    private StringBuilder path = new StringBuilder("");
 
     // Singleton Pattern
     // initialize the instance
@@ -58,9 +61,18 @@ public class DBHelper {
         context.startActivity(intent);
     }
 
-    public String[] searchAllFolderData() {
+    // Show Folder's Name hierarchically
+    public Object[] searchAllFolderData() {
+
+        // Get all folder info
         RealmResults<Folder> result = mRealm.where(Folder.class).findAll();
-        return (String[])result.toArray();
+
+        // Print logs
+        for (Folder f:result) {
+            Log.i("Heepie", f.getName() + " " + f.getDescription());
+        }
+
+        return result.toArray();
     }
 
     public void testActivity() {}
@@ -72,7 +84,6 @@ public class DBHelper {
                          .startBuild()
                          .setName(name)
                          .setDescription(description)
-                         .setUpperFolder(upperFolder)
                          .finishBuild();
 
         mRealm.insertOrUpdate(f);
@@ -86,10 +97,13 @@ public class DBHelper {
                      .startBuild()
                      .setName(name)
                      .setDescription(description)
-                     .setUpperFolder(upperFolder)
                      .finishBuild();
 
         mRealm.insertOrUpdate(c);
         mRealm.commitTransaction();
     }
+
+//    private String[] scanFolder(RealmResults<Folder> result) {
+//
+//    }
 }
