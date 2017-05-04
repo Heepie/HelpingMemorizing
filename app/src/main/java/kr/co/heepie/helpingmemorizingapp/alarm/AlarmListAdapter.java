@@ -41,6 +41,12 @@ public class AlarmListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         AlarmListView alarmListView = (AlarmListView)convertView;
 
+        // Complete null exception through this code
+        if (alarmListView == null) {
+            alarmListView = new AlarmListView(mContext);
+        }
+        // ---
+
         alarmListView.setAlarm(alarmList.get(position), position);
         return alarmListView;
     }
