@@ -11,7 +11,7 @@ import io.realm.annotations.Required;
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public class Folder extends Component {
+public class Folder extends RealmObject {
     @PrimaryKey
     @Required
     private String name;
@@ -19,16 +19,16 @@ public class Folder extends Component {
     private String description;
     private RealmList<Component> list = new RealmList<>();
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public Folder addComponent(Component obj) {
+    private Folder addComponent(Component obj) {
         list.add(obj);
         return this;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -50,7 +50,7 @@ public class Folder extends Component {
     public static class FolderBuilder {
         private Folder folder;
 
-        private FolderBuilder() {
+        public FolderBuilder() {
             folder = new Folder();
         }
 

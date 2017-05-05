@@ -12,6 +12,8 @@ import android.widget.TimePicker;
 
 import kr.co.heepie.helpingmemorizingapp.R;
 import kr.co.heepie.helpingmemorizingapp.alarm.AlarmListAdapter;
+import kr.co.heepie.helpingmemorizingapp.alarm.AlarmListItem;
+import kr.co.heepie.helpingmemorizingapp.db.Card;
 
 /**
  * Created by Heepie on 2017-05-01.
@@ -36,29 +38,19 @@ public class AddAlarm extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void onClickSelectBtn(View v) {
-
-        // Have to change each int var to item class
-        year = datePicker.getYear();
-        month = datePicker.getMonth();
-        day = datePicker.getDayOfMonth();
-
-        hour = timePicker.getHour();
-        minute = timePicker.getMinute();
-
-        msg = year+" "+month+" "+day+" "+hour+" "+minute;
+        AlarmListItem item = new AlarmListItem.ItemBuilder()
+                                              .startBuild()
+                                              .setYear(datePicker.getYear())
+                                              .setMonth(datePicker.getMonth())
+                                              .setDay(datePicker.getDayOfMonth())
+                                              .setHour(timePicker.getHour())
+                                              .setMinute(timePicker.getMinute())
+                                              .finishBuild();
 
         Intent intent = new Intent();
-        intent.putExtra("Year", year);
-        intent.putExtra("Month", month);
-        intent.putExtra("Day", day);
-        intent.putExtra("Hour", hour);
-        intent.putExtra("Minute", minute);
-
+        intent.putExtra("item", item);
         setResult(RESULT_OK, intent);
-        //----
 
-
-        Log.i("Heepie", msg);
         finish();
     }
 

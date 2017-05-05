@@ -8,7 +8,7 @@ import io.realm.annotations.Required;
  * Created by Hee_Ju.M on 2017-03-01.
  */
 
-public class Card extends Component {
+public class Card extends RealmObject {
 
     @PrimaryKey
     @Required
@@ -18,11 +18,11 @@ public class Card extends Component {
 
     // Alarm Period
     //private Object alarmPeriod;
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -40,7 +40,7 @@ public class Card extends Component {
     public static class cardBuilder {
         private Card card;
 
-        private cardBuilder() {
+        public cardBuilder() {
             card = new Card();
         }
 

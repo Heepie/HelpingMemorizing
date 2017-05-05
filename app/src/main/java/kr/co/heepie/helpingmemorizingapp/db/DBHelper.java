@@ -102,8 +102,4 @@ public class DBHelper {
         mRealm.insertOrUpdate(c);
         mRealm.commitTransaction();
     }
-
-//    private String[] scanFolder(RealmResults<Folder> result) {
-//
-//    }
 }

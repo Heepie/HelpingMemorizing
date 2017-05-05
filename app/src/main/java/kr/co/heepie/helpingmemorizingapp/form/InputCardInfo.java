@@ -59,29 +59,19 @@ public class InputCardInfo extends Activity{
 
     public void onClickCardCreate(View v) {
         if (name.getText() != "" && description.getText() != "") {
-            dbHelper.insertCardData(name.getText().toString(), description.getText().toString(), "N");
+//            dbHelper.insertCardData(name.getText().toString(), description.getText().toString(), "N");
         } else {
             Toast.makeText(this, "Fill all", Toast.LENGTH_LONG);
         }
 
-        // Register alarms from the tmp vector.
-        // for (number of vector) { alarmHelper.setAlarm(year, month, day, hour, minutes); }
-
-
-        int year = picker.getYear();
-        int month = picker.getMonth();;
-        int day = picker.getDayOfMonth();;
-
         Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
-        c.set(Calendar.HOUR_OF_DAY, 9);
-        c.set(Calendar.MINUTE, 19);
-        c.set(Calendar.SECOND, 30);
+        for (AlarmListItem item : alarmList) {
+            c.set(item.getYear(), item.getMonth(), item.getDay(), item.getHour(), item.getMinute());
+            Toast.makeText(this, item.toString(), Toast.LENGTH_LONG).show();
+            alarmHelper.setAlarm(c);
+        }
 
-        Log.i("Heepie", "InputCardInfo" + c.toString());
-
-        // Register Alarm 6 times.
-        alarmHelper.setAlarm(c);
+        finish();
     }
 
     public void onClickAddAlrm(View v) {
@@ -96,31 +86,15 @@ public class InputCardInfo extends Activity{
         String tmp = "";
 
         if (resultCode == RESULT_OK) {
-            tmp += data.getExtras().getInt("Year");
-            tmp += data.getExtras().getInt("Month");
-            tmp += data.getExtras().getInt("Day");
-            tmp += data.getExtras().getInt("Hour");
-            tmp += data.getExtras().getInt("Minute");
-
-            Toast.makeText(this, tmp, Toast.LENGTH_LONG).show();
-
-            // tmp. Have to move this source to onClickCreateBtn.
-            Calendar c = Calendar.getInstance();
-            c.set(data.getExtras().getInt("Year"), data.getExtras().getInt("Month"), data.getExtras().getInt("Day"));
-            c.set(Calendar.HOUR_OF_DAY, data.getExtras().getInt("Hour"));
-            c.set(Calendar.MINUTE, data.getExtras().getInt("Minute"));
-            c.set(Calendar.SECOND, 0);
-
-            alarmHelper.setAlarm(c);
-            // ---
-
-            alarmList.add(new AlarmListItem(data.getExtras().getInt("Year"),
-                                            data.getExtras().getInt("Month"),
-                                            data.getExtras().getInt("Day"),
-                                            data.getExtras().getInt("Hour"),
-                                            data.getExtras().getInt("Minute"), 0));
-
-            alarmListAdapter.notifyDataSetChanged();
+            switch (requestCode) {
+            case REQUEST_ADDALRM:
+                AlarmListItem item = data.getParcelableExtra("item");
+                alarmList.add(item);
+                alarmListAdapter.notifyDataSetChanged();
+                break;
+            default:
+                break;
+            }
         }
     }
 }
