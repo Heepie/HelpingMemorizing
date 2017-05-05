@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import kr.co.heepie.helpingmemorizingapp.R;
-import kr.co.heepie.helpingmemorizingapp.alarm.AlarmListAdapter;
 import kr.co.heepie.helpingmemorizingapp.alarm.AlarmListItem;
-import kr.co.heepie.helpingmemorizingapp.db.Card;
 
 /**
  * Created by Heepie on 2017-05-01.

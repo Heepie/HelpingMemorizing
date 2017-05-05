@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmObject;
 import io.realm.RealmResults;
 import kr.co.heepie.helpingmemorizingapp.form.InputCardInfo;
 import kr.co.heepie.helpingmemorizingapp.form.InputFolderInfo;
@@ -69,7 +70,7 @@ public class DBHelper {
 
         // Print logs
         for (Folder f:result) {
-            Log.i("Heepie", f.getName() + " " + f.getDescription());
+//            Log.i("Heepie", f.getName() + " " + f.getDescription());
         }
 
         return result.toArray();
@@ -102,4 +103,15 @@ public class DBHelper {
         mRealm.insertOrUpdate(c);
         mRealm.commitTransaction();
     }
+
+
+    public static void fullScan(Component component) {
+        Log.i("Heepie", component.getClass() + "|" + component.getName());
+        if (component instanceof Folder) {
+            for(Component i:((Folder) component).getList()) {
+                fullScan(i);
+            }
+        }
+    }
+
 }

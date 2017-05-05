@@ -1,15 +1,27 @@
 package kr.co.heepie.helpingmemorizingapp.db;
 
-import java.lang.annotation.Annotation;
-
 import io.realm.RealmModel;
-import io.realm.RealmObject;
-import io.realm.annotations.RealmModule;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
+import io.realm.annotations.Required;
 
 /**
- * Created by Hee_Ju.M on 2017-04-16.
+ * Created by Hee_Ju.M on 2017-05-05.
  */
 
-class Component implements RealmModel {
+// Composite Pattern
+public abstract class Component implements RealmModel {
+    private String name;
 
+    public Component(String name) {
+        this.name = name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

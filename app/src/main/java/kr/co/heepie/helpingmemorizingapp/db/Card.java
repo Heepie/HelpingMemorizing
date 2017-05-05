@@ -1,39 +1,42 @@
 package kr.co.heepie.helpingmemorizingapp.db;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
+import java.lang.annotation.Annotation;
+
+import io.realm.annotations.RealmModule;
 
 /**
- * Created by Hee_Ju.M on 2017-03-01.
+ * Created by Hee_Ju.M on 2017-05-05.
  */
 
-public class Card extends RealmObject {
-
-    @PrimaryKey
-    @Required
-    private String name;
-
+public class Card extends Component implements RealmModule {
     private String description;
 
-    // Alarm Period
-    //private Object alarmPeriod;
-    private void setName(String name) {
-        this.name = name;
+    public Card(String name) {
+        super(name);
     }
 
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-
-    public String getName() {
-        return name;
+    @Override
+    public boolean library() {
+        return false;
     }
 
+    @Override
+    public boolean allClasses() {
+        return false;
+    }
 
-    public String getDescription() {
-        return description;
+    @Override
+    public Class<?>[] classes() {
+        return new Class<?>[0];
+    }
+
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        return null;
     }
 
     // Builder Pattern
@@ -41,7 +44,7 @@ public class Card extends RealmObject {
         private Card card;
 
         public cardBuilder() {
-            card = new Card();
+            card = new Card("baisc_name");
         }
 
         public static cardBuilder startBuild() {
@@ -62,4 +65,5 @@ public class Card extends RealmObject {
             return card;
         }
     }
+
 }
