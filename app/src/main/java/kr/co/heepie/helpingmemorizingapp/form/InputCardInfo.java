@@ -80,6 +80,10 @@ public class InputCardInfo extends Activity{
         startActivityForResult(intent, REQUEST_ADDALRM);
     }
 
+    public void onClickDeleteBtn(View v) {
+        Toast.makeText(this, "Clicked Delete Btn.", Toast.LENGTH_LONG).show();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

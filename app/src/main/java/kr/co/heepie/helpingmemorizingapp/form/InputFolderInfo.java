@@ -39,7 +39,7 @@ public class InputFolderInfo extends Activity{
 
     public void onClickFolderCreate(View v) {
         if (name.getText() != "" && description.getText() != "" && upperFolder.getText() != "") {
-            dbHelper.insertFolderData(name.getText().toString(), description.getText().toString(), upperFolder.getText().toString());
+            dbHelper.insertFolderData(name.getText().toString(), description.getText().toString());
             finish();
         } else {
             Toast.makeText(this, "Fill all", Toast.LENGTH_LONG);

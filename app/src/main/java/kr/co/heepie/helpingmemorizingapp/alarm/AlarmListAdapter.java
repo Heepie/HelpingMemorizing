@@ -44,10 +44,24 @@ public class AlarmListAdapter extends BaseAdapter {
         // Complete null exception through this code
         if (alarmListView == null) {
             alarmListView = new AlarmListView(mContext);
+            alarmListView.setOnDeleteButtonClickListner(deleteButtonClickListner);
         }
         // ---
 
         alarmListView.setAlarm(alarmList.get(position), position);
         return alarmListView;
     }
+
+    public boolean deleteItem(int position) {
+        alarmList.remove(position);
+        notifyDataSetChanged();
+        return true;
+    }
+
+    AlarmListView.onDeleteButtonClickListner deleteButtonClickListner = new AlarmListView.onDeleteButtonClickListner() {
+        @Override
+        public void onClicked(int position) {
+            deleteItem(position);
+        }
+    };
 }

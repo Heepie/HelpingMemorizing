@@ -66,11 +66,13 @@ public class DBHelper {
     public Object[] searchAllFolderData() {
 
         // Get all folder info
-        RealmResults<Folder> result = mRealm.where(Folder.class).findAll();
+        RealmResults<Component> result = mRealm.where(Component.class)
+                                               .equalTo("componentType", "Folder")
+                                               .findAll();
 
         // Print logs
-        for (Folder f:result) {
-//            Log.i("Heepie", f.getName() + " " + f.getDescription());
+        for (Component f:result) {
+            Log.i("Heepie", f.getName() + " " + f.getDescription());
         }
 
         return result.toArray();
@@ -78,27 +80,29 @@ public class DBHelper {
 
     public void testActivity() {}
 
-    public void insertFolderData(String name, String description, String upperFolder){
+    public void insertFolderData(String name, String description){
         mRealm.beginTransaction();
 
-        Folder f = Folder.FolderBuilder
-                         .startBuild()
-                         .setName(name)
-                         .setDescription(description)
-                         .finishBuild();
+        Component f = Component.ComponentBuilder
+                               .startBuild()
+                               .setType("Folder")
+                               .setName(name)
+                               .setDescription(description)
+                               .finishBuild();
 
         mRealm.insertOrUpdate(f);
         mRealm.commitTransaction();
     }
 
-    public void insertCardData(String name, String description, String upperFolder){
+    public void insertCardData(String name, String description){
         mRealm.beginTransaction();
 
-        Card c = Card.cardBuilder
-                     .startBuild()
-                     .setName(name)
-                     .setDescription(description)
-                     .finishBuild();
+        Component c = Component.ComponentBuilder
+                               .startBuild()
+                               .setType("Card")
+                               .setName(name)
+                               .setDescription(description)
+                               .finishBuild();
 
         mRealm.insertOrUpdate(c);
         mRealm.commitTransaction();
@@ -107,8 +111,8 @@ public class DBHelper {
 
     public static void fullScan(Component component) {
         Log.i("Heepie", component.getClass() + "|" + component.getName());
-        if (component instanceof Folder) {
-            for(Component i:((Folder) component).getList()) {
+        if (component.getComponentType() == "Folder") {
+            for(Component i:component.getList()) {
                 fullScan(i);
             }
         }

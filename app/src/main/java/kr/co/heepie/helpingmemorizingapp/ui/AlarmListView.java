@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kr.co.heepie.helpingmemorizingapp.R;
 import kr.co.heepie.helpingmemorizingapp.alarm.AlarmListItem;
@@ -17,7 +18,7 @@ import kr.co.heepie.helpingmemorizingapp.alarm.AlarmListItem;
 public class AlarmListView extends LinearLayout {
     Context mContext;
     TextView textViewTime;
-    Button btnSingleAlarmItemCancel;
+    Button deleteBtn;
 
     AlarmListItem item;
     private int position;
@@ -29,27 +30,27 @@ public class AlarmListView extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.alarm_list, this);
         textViewTime = (TextView)layout.findViewById(R.id.alarm_listItem);
-        btnSingleAlarmItemCancel = (Button)findViewById(R.id.alarm_deleteBtn);
+        deleteBtn = (Button)findViewById(R.id.alarm_deleteBtn);
 
-        btnSingleAlarmItemCancel.setOnClickListener(new OnClickListener() {
+        deleteBtn.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-//                if(onRemoveButtonClickListner != null)
-//                    onRemoveButtonClickListner.onClicked(item.hh, item.mm, item.reqCode, position);
+                if(clickListner != null)
+                    clickListner.onClicked(position);
             }
         });
     }
 
 
-    public interface OnRemoveButtonClickListner{
-        void onClicked(int hh, int mm, int reqCode, int position);
+    public interface onDeleteButtonClickListner {
+        void onClicked(int position);
     }
 
-    OnRemoveButtonClickListner onRemoveButtonClickListner;
+    onDeleteButtonClickListner clickListner;
 
-    public void setOnRemoveButtonClickListner(OnRemoveButtonClickListner onRemoveButtonClickListner){
-        this.onRemoveButtonClickListner = onRemoveButtonClickListner;
+    public void setOnDeleteButtonClickListner (onDeleteButtonClickListner clickListner){
+        this.clickListner = clickListner;
     }
 
     public boolean setAlarm(AlarmListItem item, int position){
@@ -66,5 +67,5 @@ public class AlarmListView extends LinearLayout {
 
         return true;
     }
-
 }
+
