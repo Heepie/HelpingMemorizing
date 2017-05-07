@@ -59,7 +59,7 @@ public class InputCardInfo extends Activity{
 
     public void onClickCardCreate(View v) {
         if (name.getText() != "" && description.getText() != "") {
-//            dbHelper.insertCardData(name.getText().toString(), description.getText().toString(), "N");
+            dbHelper.insertData("Card", name.getText().toString(), description.getText().toString());
         } else {
             Toast.makeText(this, "Fill all", Toast.LENGTH_LONG);
         }

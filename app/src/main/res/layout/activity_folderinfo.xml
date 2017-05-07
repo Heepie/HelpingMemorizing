@@ -78,19 +78,15 @@
             android:text="UpperFolder: "
             />
 
-        <EditText
-            android:id="@+id/input_upperFolder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="input UpperFolder"
-            />
+        <Spinner
+            android:id="@+id/select_folderSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/select_folderSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
 
     <Button
         android:id="@+id/input_folderInfo"

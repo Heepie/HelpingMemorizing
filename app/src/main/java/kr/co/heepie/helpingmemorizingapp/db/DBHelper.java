@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import io.realm.Realm;
@@ -63,51 +64,47 @@ public class DBHelper {
     }
 
     // Show Folder's Name hierarchically
-    public Object[] searchAllFolderData() {
-
+    public String[] searchAllFolderData() {
+        int i = 0;
         // Get all folder info
         RealmResults<Component> result = mRealm.where(Component.class)
                                                .equalTo("componentType", "Folder")
                                                .findAll();
 
+        String[] list;
+        list = new String[result.size()];
+
         // Print logs
         for (Component f:result) {
+            list[i++] = f.getName();
             Log.i("Heepie", f.getName() + " " + f.getDescription());
         }
 
-        return result.toArray();
+        return list;
     }
 
     public void testActivity() {}
 
-    public void insertFolderData(String name, String description){
+    public void insertData(String type, String name, String description){
         mRealm.beginTransaction();
 
-        Component f = Component.ComponentBuilder
-                               .startBuild()
-                               .setType("Folder")
-                               .setName(name)
-                               .setDescription(description)
-                               .finishBuild();
+        switch (type) {
+        case "Folder":
+        case "Card":
+            Component com = Component.ComponentBuilder
+                    .startBuild()
+                    .setType(type)
+                    .setName(name)
+                    .setDescription(description)
+                    .finishBuild();
 
-        mRealm.insertOrUpdate(f);
+            mRealm.insertOrUpdate(com);
+            break;
+        default:
+            break;
+        }
         mRealm.commitTransaction();
     }
-
-    public void insertCardData(String name, String description){
-        mRealm.beginTransaction();
-
-        Component c = Component.ComponentBuilder
-                               .startBuild()
-                               .setType("Card")
-                               .setName(name)
-                               .setDescription(description)
-                               .finishBuild();
-
-        mRealm.insertOrUpdate(c);
-        mRealm.commitTransaction();
-    }
-
 
     public static void fullScan(Component component) {
         Log.i("Heepie", component.getClass() + "|" + component.getName());

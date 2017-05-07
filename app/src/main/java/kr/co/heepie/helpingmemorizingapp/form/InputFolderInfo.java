@@ -29,17 +29,16 @@ public class InputFolderInfo extends Activity{
 
         name = (TextView)findViewById(R.id.input_folderName);
         description = (TextView)findViewById(R.id.input_folderDescription);
-        upperFolder = (TextView)findViewById(R.id.input_upperFolder);
         spinner = (Spinner) findViewById(R.id.select_folderSpinner);
 
-        Object[] str = dbHelper.searchAllFolderData();
-        ArrayAdapter<Object> list = new ArrayAdapter<Object> (this, R.layout.support_simple_spinner_dropdown_item, str);
+        String[] str = dbHelper.searchAllFolderData();
+        ArrayAdapter<String> list = new ArrayAdapter<String> (this, R.layout.support_simple_spinner_dropdown_item, str);
         spinner.setAdapter(list);
     }
 
     public void onClickFolderCreate(View v) {
-        if (name.getText() != "" && description.getText() != "" && upperFolder.getText() != "") {
-            dbHelper.insertFolderData(name.getText().toString(), description.getText().toString());
+        if (name.getText() != "" && description.getText() != "") {
+            dbHelper.insertData("Folder", name.getText().toString(), description.getText().toString());
             finish();
         } else {
             Toast.makeText(this, "Fill all", Toast.LENGTH_LONG);
