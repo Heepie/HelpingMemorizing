@@ -18,7 +18,7 @@ Wrong Answer Note Advantage
 + Organizing my own concept
 + Repeated study
 
-![](./wrong answer note.png)
+![](./wrong_answer_note.png)
 
 learning method
 
