@@ -1,4 +1,4 @@
-package kr.co.heepie.helpingmemorizingapp;
+package com.co.heepie.helpingmemorizingapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
