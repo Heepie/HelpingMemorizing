@@ -4,69 +4,136 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <variable
+            name="view"
+            type="com.heepie.helpingmemorizingapp.view.MainActivity"/>
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-            <LinearLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <Button
-                    style="@style/DefaultText"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:text="Check Folder"
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_menu"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{view::onClickedMenu}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    style="@style/DefaultText"
+                <TextView
+                    style="@style/TitleText"
+                    android:text="@string/app_name"
+                    android:layout_marginLeft="32dp"
+                    />
+            </android.support.v7.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:text="Test"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:orientation="horizontal"
+                    >
+
+                    <Button
+                        android:id="@+id/check_folder"
+                        style="@style/DefaultText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Check Folder"
+                        android:onClick="@{view::onClickedFunc}"
+                        android:transitionName="@string/shared_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        style="@style/DefaultText"
+                        android:id="@+id/test"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Test"
+                        android:onClick="@{view::onClickedFunc}"
+                        android:transitionName="@string/shared_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    >
+
+                    <Button
+                        style="@style/DefaultText"
+                        android:id="@+id/create_folder"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Create Folder"
+                        android:onClick="@{view::onClickedFunc}"
+                        android:transitionName="@string/shared_title"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <Button
+                        style="@style/DefaultText"
+                        android:id="@+id/create_card"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Create Card"
+                        android:onClick="@{view::onClickedFunc}"
+                        android:transitionName="@string/shared_title"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <Button
-                    style="@style/DefaultText"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:text="Create Folder"
-                    app:layout_constraintStart_toStartOf="parent"/>
-
-                <Button
-                    style="@style/DefaultText"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:text="Create Card"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
+                android:layout_height="0dp"
+                android:layout_weight="2">
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+        <include
+            android:id="@+id/included_view"
+            layout="@layout/view_navigation_menu"/>
+
+    </android.support.v4.widget.DrawerLayout>
 
 </layout>
 
